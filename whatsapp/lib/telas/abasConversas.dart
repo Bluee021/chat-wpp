@@ -87,7 +87,7 @@ class _AbaConversasState extends State<AbaConversas> {
                   );
                 }
                 return ListView.builder(
-                    itemCount: 1,
+                    itemCount: querySnapshot.docs.toList().length,
                     itemBuilder: ((context, index) {
                       var conversas = querySnapshot.docs.toList();
                       var conversa = conversas[index];

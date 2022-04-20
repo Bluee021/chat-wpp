@@ -20,6 +20,7 @@ class Mensagens extends StatefulWidget {
 }
 
 class _MensagensState extends State<Mensagens> {
+  late QuerySnapshot<Object?> list;
   File? _Imagem;
   bool _subindoImagem = false;
   TextEditingController _controllerMensagem = TextEditingController();
@@ -210,7 +211,7 @@ class _MensagensState extends State<Mensagens> {
     var stream = StreamBuilder<QuerySnapshot>(
         stream: _controllerStream.stream,
         builder: (context, snapshot) {
-          var list = snapshot.data! ;
+          // var list = snapshot.data!;
 
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -229,6 +230,7 @@ class _MensagensState extends State<Mensagens> {
               if (snapshot.hasError) {
                 return Expanded(child: Text('Erro ao carregar dados'));
               } else {
+                list = snapshot.data!;
                 return Expanded(
                     child: ListView.builder(
                         controller: _scrollController,
